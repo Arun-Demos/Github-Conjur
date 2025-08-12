@@ -23,16 +23,20 @@ conjur variable set -i conjur/authn-jwt/github/jwks-uri -v https://token.actions
 Result: Successfully set value for variable 'conjur/authn-jwt/github/jwks-uri'
 
 conjur variable set -i conjur/authn-jwt/github/issuer -v https://token.actions.githubusercontent.com
+
 Result: Successfully set value for variable 'conjur/authn-jwt/github/issuer'
 
 conjur variable set -i conjur/authn-jwt/github/token-app-property -v "sub"
-Successfully set value for variable 'conjur/authn-jwt/github/token-app-property'
+
+Result: Successfully set value for variable 'conjur/authn-jwt/github/token-app-property'
 
 conjur variable set -i conjur/authn-jwt/github/identity-path -v "data/github-apps"
-Successfully set value for variable 'conjur/authn-jwt/github/identity-path'
+
+Result: Successfully set value for variable 'conjur/authn-jwt/github/identity-path'
 
 conjur variable set -i conjur/authn-jwt/github/enforced-claims -v "repository,ref"
-Successfully set value for variable 'conjur/authn-jwt/github/enforced-claims'
+
+Result: Successfully set value for variable 'conjur/authn-jwt/github/enforced-claims'
 
 **Enable the authenticator service**
 
