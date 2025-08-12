@@ -19,10 +19,10 @@ conjur policy load -f github-authn.yaml -b conjur/authn-jwt
 **Set the values of authentication service configuration/vairables:**
 
 conjur variable set -i conjur/authn-jwt/github/jwks-uri -v https://token.actions.githubusercontent.com/.well-known/jwks
-Successfully set value for variable 'conjur/authn-jwt/github/jwks-uri'
+Result: Successfully set value for variable 'conjur/authn-jwt/github/jwks-uri'
 
 conjur variable set -i conjur/authn-jwt/github/issuer -v https://token.actions.githubusercontent.com
-Successfully set value for variable 'conjur/authn-jwt/github/issuer'
+Result: Successfully set value for variable 'conjur/authn-jwt/github/issuer'
 
 conjur variable set -i conjur/authn-jwt/github/token-app-property -v "sub"
 Successfully set value for variable 'conjur/authn-jwt/github/token-app-property'
