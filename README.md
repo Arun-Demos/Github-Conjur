@@ -1,71 +1,56 @@
-# Github-Conjur
 Pull secrets from conjur
 
 Pre-requisites:
-  - Access to Conjur Cloud with Admin privileges
-  - Conjurcli installed and reachable to conjur cloud
-  - Steps to setup conjurcli: https://docs.cyberark.com/conjur-cloud/latest/en/content/conjurcloud/cli/cli-setup.htm?Highlight=conjurcli
 
+Access to Conjur Cloud with Admin privileges
+Conjurcli installed and reachable to conjur cloud
+Steps to setup conjurcli: https://docs.cyberark.com/conjur-cloud/latest/en/content/conjurcloud/cli/cli-setup.htm?Highlight=conjurcli
 Oficial Documentation: https://docs.cyberark.com/conjur-cloud/latest/en/content/integrations/github-actions.htm#tabset-2-tab-2
 
-	1. Create the authentication webservice for Github Actions and set values
+**1. Create the authentication webservice for Github Actions and set values**
 
-conjur policy load -f github-authn.yaml -b conjur/authn-jwt
+```conjur policy load -f github-authn.yaml -b conjur/authn-jwt```
 
-_{
-    "created_roles": {},
-    "version": xx
-}_
+{ "created_roles": {}, "version": xx }
 
 **Set the values of authentication service configuration/vairables:**
 
-conjur variable set -i conjur/authn-jwt/github/jwks-uri -v https://token.actions.githubusercontent.com/.well-known/jwks
+```conjur variable set -i conjur/authn-jwt/github/jwks-uri -v https://token.actions.githubusercontent.com/.well-known/jwks```
 
-_Result: Successfully set value for variable 'conjur/authn-jwt/github/jwks-uri'_
+Result: Successfully set value for variable 'conjur/authn-jwt/github/jwks-uri'
 
-conjur variable set -i conjur/authn-jwt/github/issuer -v https://token.actions.githubusercontent.com
+```conjur variable set -i conjur/authn-jwt/github/issuer -v https://token.actions.githubusercontent.com```
 
-_Result: Successfully set value for variable 'conjur/authn-jwt/github/issuer'_
+Result: Successfully set value for variable 'conjur/authn-jwt/github/issuer'
 
-conjur variable set -i conjur/authn-jwt/github/token-app-property -v "sub"
+```conjur variable set -i conjur/authn-jwt/github/token-app-property -v "sub"```
 
-_Result: Successfully set value for variable 'conjur/authn-jwt/github/token-app-property'_
+Result: Successfully set value for variable 'conjur/authn-jwt/github/token-app-property'
 
-conjur variable set -i conjur/authn-jwt/github/identity-path -v "data/github-apps"
+```conjur variable set -i conjur/authn-jwt/github/identity-path -v "data/github-apps"```
 
-_Result: Successfully set value for variable 'conjur/authn-jwt/github/identity-path'_
+Result: Successfully set value for variable 'conjur/authn-jwt/github/identity-path'
 
-conjur variable set -i conjur/authn-jwt/github/enforced-claims -v "repository,ref"
+```conjur variable set -i conjur/authn-jwt/github/enforced-claims -v "repository,ref"```
 
-_Result: Successfully set value for variable 'conjur/authn-jwt/github/enforced-claims'_
+Result: Successfully set value for variable 'conjur/authn-jwt/github/enforced-claims'
 
-**Enable the authenticator service**
+Enable the authenticator service
 
-conjur authenticator enable --id authn-jwt/github
+```conjur authenticator enable --id authn-jwt/github```
 
-	2. Create the group and host ID for github actions and grant access to webservice from step 1
+**2. Create the group and host ID for github actions and grant access to webservice from step 1**
 
-conjur policy load -f hosts-github.yaml -b data
+```conjur policy load -f hosts-github.yaml -b data```
 
-_{
-    "created_roles": {},
-    "version": xx
-}_
+{ "created_roles": {}, "version": xx }
 
-conjur policy load -f grant-host-authn-apps.yaml -b conjur/authn-jwt/github
+```conjur policy load -f grant-host-authn-apps.yaml -b conjur/authn-jwt/github```
 
-_{
-    "created_roles": {},
-    "version": xx
-}_
+{ "created_roles": {}, "version": xx }
 
-	3. Grant access to safes/secrets for github Hosts
+**3. Grant access to safes/secrets for github Hosts**
 
-conjur policy load -f grant-secret-access.yaml -b data
+```conjur policy load -f grant-secret-access.yaml -b data```
 
-_{
-    "created_roles": {},
-    "version": xx
-}_
-
-Setup up the github actions: https://github.com/Arun-Demos/Github-Conjur/blob/main/.github/workflows/fetch-secrets.yml<img width="772" height="878" alt="image" src="https://github.com/user-attachments/assets/a5c2b3c9-a2b3-4aca-b705-f84cbeabaeea" />
+{ "created_roles": {}, "version": xx }
