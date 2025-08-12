@@ -14,29 +14,29 @@ Pre-requisites:
 
 **Set the values of authentication service configuration/vairables:**
 
-      ```conjur variable set -i conjur/authn-jwt/github/jwks-uri -v https://token.actions.githubusercontent.com/.well-known/jwks```
+      conjur variable set -i conjur/authn-jwt/github/jwks-uri -v https://token.actions.githubusercontent.com/.well-known/jwks
   
   Result: Successfully set value for variable 'conjur/authn-jwt/github/jwks-uri'
   
-      ```conjur variable set -i conjur/authn-jwt/github/issuer -v https://token.actions.githubusercontent.com```
+      conjur variable set -i conjur/authn-jwt/github/issuer -v https://token.actions.githubusercontent.com
   
   Result: Successfully set value for variable 'conjur/authn-jwt/github/issuer'
   
-  ```conjur variable set -i conjur/authn-jwt/github/token-app-property -v "sub"```
+        conjur variable set -i conjur/authn-jwt/github/token-app-property -v "sub"
   
   Result: Successfully set value for variable 'conjur/authn-jwt/github/token-app-property'
   
-  ```conjur variable set -i conjur/authn-jwt/github/identity-path -v "data/github-apps"```
+        conjur variable set -i conjur/authn-jwt/github/identity-path -v "data/github-apps"
   
   Result: Successfully set value for variable 'conjur/authn-jwt/github/identity-path'
   
-  ```conjur variable set -i conjur/authn-jwt/github/enforced-claims -v "repository,ref"```
+        conjur variable set -i conjur/authn-jwt/github/enforced-claims -v "repository,ref"
   
   Result: Successfully set value for variable 'conjur/authn-jwt/github/enforced-claims'
 
 Enable the authenticator service
 
-```conjur authenticator enable --id authn-jwt/github```
+      conjur authenticator enable --id authn-jwt/github
 
 **2. Create the group and host ID for github actions and grant access to webservice from step 1**
 
