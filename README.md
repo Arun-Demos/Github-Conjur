@@ -11,32 +11,33 @@ Oficial Documentation: https://docs.cyberark.com/conjur-cloud/latest/en/content/
 	1. Create the authentication webservice for Github Actions and set values
 
 conjur policy load -f github-authn.yaml -b conjur/authn-jwt
-{
+
+_{
     "created_roles": {},
     "version": xx
-}
+}_
 
 **Set the values of authentication service configuration/vairables:**
 
 conjur variable set -i conjur/authn-jwt/github/jwks-uri -v https://token.actions.githubusercontent.com/.well-known/jwks
 
-Result: Successfully set value for variable 'conjur/authn-jwt/github/jwks-uri'
+_Result: Successfully set value for variable 'conjur/authn-jwt/github/jwks-uri'_
 
 conjur variable set -i conjur/authn-jwt/github/issuer -v https://token.actions.githubusercontent.com
 
-Result: Successfully set value for variable 'conjur/authn-jwt/github/issuer'
+_Result: Successfully set value for variable 'conjur/authn-jwt/github/issuer'_
 
 conjur variable set -i conjur/authn-jwt/github/token-app-property -v "sub"
 
-Result: Successfully set value for variable 'conjur/authn-jwt/github/token-app-property'
+_Result: Successfully set value for variable 'conjur/authn-jwt/github/token-app-property'_
 
 conjur variable set -i conjur/authn-jwt/github/identity-path -v "data/github-apps"
 
-Result: Successfully set value for variable 'conjur/authn-jwt/github/identity-path'
+_Result: Successfully set value for variable 'conjur/authn-jwt/github/identity-path'_
 
 conjur variable set -i conjur/authn-jwt/github/enforced-claims -v "repository,ref"
 
-Result: Successfully set value for variable 'conjur/authn-jwt/github/enforced-claims'
+_Result: Successfully set value for variable 'conjur/authn-jwt/github/enforced-claims'_
 
 **Enable the authenticator service**
 
@@ -45,22 +46,26 @@ conjur authenticator enable --id authn-jwt/github
 	2. Create the group and host ID for github actions and grant access to webservice from step 1
 
 conjur policy load -f hosts-github.yaml -b data
-{
+
+_{
     "created_roles": {},
     "version": xx
-}
+}_
+
 conjur policy load -f grant-host-authn-apps.yaml -b conjur/authn-jwt/github
-{
+
+_{
     "created_roles": {},
     "version": xx
-}
+}_
 
 	3. Grant access to safes/secrets for github Hosts
 
 conjur policy load -f grant-secret-access.yaml -b data
-{
+
+_{
     "created_roles": {},
     "version": xx
-}
+}_
 
 Setup up the github actions: https://github.com/Arun-Demos/Github-Conjur/blob/main/.github/workflows/fetch-secrets.yml<img width="772" height="878" alt="image" src="https://github.com/user-attachments/assets/a5c2b3c9-a2b3-4aca-b705-f84cbeabaeea" />
