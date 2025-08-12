@@ -8,31 +8,31 @@ Pre-requisites:
 
 **1. Create the authentication webservice for Github Actions and set values**
 
-```conjur policy load -f github-authn.yaml -b conjur/authn-jwt```
-
-{ "created_roles": {}, "version": xx }
+      conjur policy load -f github-authn.yaml -b conjur/authn-jwt
+        
+  { "created_roles": {}, "version": xx }
 
 **Set the values of authentication service configuration/vairables:**
 
-```conjur variable set -i conjur/authn-jwt/github/jwks-uri -v https://token.actions.githubusercontent.com/.well-known/jwks```
-
-Result: Successfully set value for variable 'conjur/authn-jwt/github/jwks-uri'
-
-```conjur variable set -i conjur/authn-jwt/github/issuer -v https://token.actions.githubusercontent.com```
-
-Result: Successfully set value for variable 'conjur/authn-jwt/github/issuer'
-
-```conjur variable set -i conjur/authn-jwt/github/token-app-property -v "sub"```
-
-Result: Successfully set value for variable 'conjur/authn-jwt/github/token-app-property'
-
-```conjur variable set -i conjur/authn-jwt/github/identity-path -v "data/github-apps"```
-
-Result: Successfully set value for variable 'conjur/authn-jwt/github/identity-path'
-
-```conjur variable set -i conjur/authn-jwt/github/enforced-claims -v "repository,ref"```
-
-Result: Successfully set value for variable 'conjur/authn-jwt/github/enforced-claims'
+      ```conjur variable set -i conjur/authn-jwt/github/jwks-uri -v https://token.actions.githubusercontent.com/.well-known/jwks```
+  
+  Result: Successfully set value for variable 'conjur/authn-jwt/github/jwks-uri'
+  
+      ```conjur variable set -i conjur/authn-jwt/github/issuer -v https://token.actions.githubusercontent.com```
+  
+  Result: Successfully set value for variable 'conjur/authn-jwt/github/issuer'
+  
+  ```conjur variable set -i conjur/authn-jwt/github/token-app-property -v "sub"```
+  
+  Result: Successfully set value for variable 'conjur/authn-jwt/github/token-app-property'
+  
+  ```conjur variable set -i conjur/authn-jwt/github/identity-path -v "data/github-apps"```
+  
+  Result: Successfully set value for variable 'conjur/authn-jwt/github/identity-path'
+  
+  ```conjur variable set -i conjur/authn-jwt/github/enforced-claims -v "repository,ref"```
+  
+  Result: Successfully set value for variable 'conjur/authn-jwt/github/enforced-claims'
 
 Enable the authenticator service
 
