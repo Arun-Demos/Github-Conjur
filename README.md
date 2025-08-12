@@ -1,4 +1,4 @@
-**This repository helps to setup a demo to pull secrets from conjur**
+# **This repository helps to setup a demo to pull secrets from conjur**
 
 Pre-requisites:
 - Access to Conjur Cloud with Admin privileges
@@ -6,7 +6,7 @@ Pre-requisites:
 - Steps to setup conjurcli: https://docs.cyberark.com/conjur-cloud/latest/en/content/conjurcloud/cli/cli-setup.htm?Highlight=conjurcli
 - Oficial Documentation: https://docs.cyberark.com/conjur-cloud/latest/en/content/integrations/github-actions.htm#tabset-2-tab-2
 
-**1. Create the authentication webservice for Github Actions and set values**
+## **1. Create the authentication webservice for Github Actions and set values**
 
       conjur policy load -f github-authn.yaml -b conjur/authn-jwt
         
@@ -38,7 +38,7 @@ Enable the authenticator service
 
       conjur authenticator enable --id authn-jwt/github
 
-**2. Create the group and host ID for github actions and grant access to webservice from step 1**
+## **2. Create the group and host ID for github actions and grant access to webservice from step 1**
 
 ```conjur policy load -f hosts-github.yaml -b data```
 
@@ -48,7 +48,7 @@ Enable the authenticator service
 
 >{ "created_roles": {}, "version": xx }
 
-**3. Grant access to safes/secrets for github Hosts**
+## **3. Grant access to safes/secrets for github Hosts**
 
 ```conjur policy load -f grant-secret-access.yaml -b data```
 
