@@ -2,6 +2,7 @@
 
 Pre-requisites:
 - Access to Conjur Cloud with Admin privileges
+- Secrets have been added and a group exists to control access to these secrets in Conjur
 - Conjurcli installed and reachable to conjur cloud
 - Steps to setup conjurcli: https://docs.cyberark.com/conjur-cloud/latest/en/content/conjurcloud/cli/cli-setup.htm?Highlight=conjurcli
 - Official Documentation: https://docs.cyberark.com/conjur-cloud/latest/en/content/integrations/github-actions.htm#tabset-2-tab-2
