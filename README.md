@@ -4,7 +4,7 @@ Pre-requisites:
 - Access to Conjur Cloud with Admin privileges
 - Conjurcli installed and reachable to conjur cloud
 - Steps to setup conjurcli: https://docs.cyberark.com/conjur-cloud/latest/en/content/conjurcloud/cli/cli-setup.htm?Highlight=conjurcli
-- Oficial Documentation: https://docs.cyberark.com/conjur-cloud/latest/en/content/integrations/github-actions.htm#tabset-2-tab-2
+- Official Documentation: https://docs.cyberark.com/conjur-cloud/latest/en/content/integrations/github-actions.htm#tabset-2-tab-2
 
 ## **1. Create the authentication webservice for Github Actions and set values**
 
