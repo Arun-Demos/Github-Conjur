@@ -40,6 +40,7 @@ Enable the authenticator service
       conjur authenticator enable --id authn-jwt/github
 
 ## **2. Create the group and host ID for github actions and grant access to webservice from step 1**
+Make sure the update the 'hosts-github.yaml' file with correct GitHub Repo and Conjue JWT Authenticator names
 
 ```conjur policy load -f hosts-github.yaml -b data```
 
