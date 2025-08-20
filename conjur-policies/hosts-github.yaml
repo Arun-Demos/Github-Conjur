@@ -5,11 +5,11 @@
     # Example below pins branch "main"
     - !group
     - !host
-      id: repo:Arun-Demos/Github-Conjur:ref:refs/heads/main
+      id: repo:<GithubOrg>/<Github-RepoName>:ref:refs/heads/main
       annotations:
-        authn-jwt/github/repository: "Arun-Demos/Github-Conjur"
-        authn-jwt/github/ref: "refs/heads/main"
+        authn-jwt/<Conjur-JWT_Authenticator>/repository: "<GithubOrg>/<Github-RepoName>"
+        authn-jwt/<Conjur-JWT_Authenticator>/ref: "refs/heads/main"
 
     - !grant
       role: !group
-      member: !host repo:Arun-Demos/Github-Conjur:ref:refs/heads/main
+      member: !host repo:<GithubOrg>/<Github-RepoName>:ref:refs/heads/main
