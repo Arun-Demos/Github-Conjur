@@ -1,0 +1,40 @@
+name: conjur-direct
+on:
+  workflow_dispatch: {}
+
+permissions:
+  id-token: write   # REQUIRED for GitHub OIDC
+  contents: read
+
+jobs:
+  conjur:
+    runs-on: ubuntu-latest   # or your self-hosted
+    steps:
+      - uses: actions/checkout@v4
+
+      # Dependencies for the script
+      - name: Install jq/curl
+        run: sudo apt-get update && sudo apt-get install -y jq curl
+
+      # If you have a proxy, consider bypassing for Conjur Cloud:
+      # - name: Set NO_PROXY (optional)
+      #   run: echo "NO_PROXY=*.cyberark.cloud" >> $GITHUB_ENV
+
+      - name: Fetch secrets from Conjur (OIDC/JWT)
+        env:
+          # Use your tenant base URL (include /api only if your tenant needs it)
+          INPUT_URL: https://maybankmypoc.secretsmgr.cyberark.cloud/api
+          INPUT_ACCOUNT: conjur
+          INPUT_AUTHN_ID: MaybankMY-POC-GithubActions
+          # One or more: <conjur-var-id>|<ENV_NAME> ; separated for multiple
+          INPUT_SECRETS: data/dynamic/ConjurPOC-TestSecret|DB_USERNAME
+          # Optional: PEM contents for custom CA
+          INPUT_CERTIFICATE: ""
+        run: |
+          chmod +x ./entrypoint.sh
+          ./entrypoint.sh
+
+      - name: Use the secret (example)
+        run: |
+          echo "DB_USERNAME length: ${#DB_USERNAME}"
+          # ./deploy --db-user "$DB_USERNAME"
