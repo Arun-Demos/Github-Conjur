@@ -23,11 +23,11 @@ jobs:
       - name: Fetch secrets from Conjur (OIDC/JWT)
         env:
           # Use your tenant base URL (include /api only if your tenant needs it)
-          INPUT_URL: https://maybankmypoc.secretsmgr.cyberark.cloud/api
+          INPUT_URL: https://aruntenant.secretsmgr.cyberark.cloud/api
           INPUT_ACCOUNT: conjur
-          INPUT_AUTHN_ID: MaybankMY-POC-GithubActions
+          INPUT_AUTHN_ID: github
           # One or more: <conjur-var-id>|<ENV_NAME> ; separated for multiple
-          INPUT_SECRETS: data/dynamic/ConjurPOC-TestSecret|DB_USERNAME
+          INPUT_SECRETS: data/vault/StarAi-Dev/Arun-Staridb/username|DB_USERNAME
           # Optional: PEM contents for custom CA
           INPUT_CERTIFICATE: ""
         run: |
