@@ -52,6 +52,7 @@ handle_git_jwt() {
     
     # Grab JWT Token
     local jwt_token=$1
+	echo "$jwt_token"
     # Parse payload body
     j_body=$( echo "$jwt_token" | cut -d "." -f 2 )
     # Repad b64 token (dirty)
