@@ -52,9 +52,9 @@ handle_git_jwt() {
     
     # Grab JWT Token
     local jwt_token=$1
-	echo "$jwt_token"
     # Parse payload body
     j_body=$( echo "$jwt_token" | cut -d "." -f 2 )
+	echo "$j_body"
     # Repad b64 token (dirty)
     padd="=="
     jwt_padded="${j_body}${padd}"
@@ -100,7 +100,6 @@ conjur_authn() {
 		echo "::debug Authenticate via Authn-JWT"
         JWT_TOKEN=$( curl -s -H "Authorization:bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL" | jq -r .value )
         handle_git_jwt "$JWT_TOKEN"
-		echo "$JWT_TOKEN"
         
 		if [[ -n "$INPUT_CERTIFICATE" ]]; then
             echo "::debug Authenticating with certificate"
