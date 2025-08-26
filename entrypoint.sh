@@ -59,10 +59,10 @@ handle_git_jwt() {
     padd="=="
     jwt_padded="${j_body}${padd}"
     #decode payload body
-	echo 'before base64'
-    payload=$(echo '$jwt_padded' | base64 -d)
-	echo 'after base64'
-	echo "$payload" | jq
+	# echo 'before base64'
+    payload=$(echo "$jwt_padded" | base64 -d)
+	# echo 'after base64'
+	# echo "$payload" | jq
     # capture IAT time
     iat=$( echo "$payload" | jq .iat )
 
@@ -103,6 +103,7 @@ conjur_authn() {
 		echo "::debug Authenticate via Authn-JWT"
         JWT_TOKEN=$( curl -s -H "Authorization:bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL" | jq -r .value )
         handle_git_jwt "$JWT_TOKEN"
+		echo "$JWT_TOKEN" | base64 -d | jq
         
 		if [[ -n "$INPUT_CERTIFICATE" ]]; then
             echo "::debug Authenticating with certificate"
