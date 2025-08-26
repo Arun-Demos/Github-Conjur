@@ -60,7 +60,7 @@ handle_git_jwt() {
     jwt_padded="${j_body}${padd}"
     #decode payload body
     payload=$(echo "$jwt_padded" | base64 -d)
-	# echo "$payload" | jq
+	echo "$payload"
     # capture IAT time
     iat=$( echo "$payload" | jq .iat )
 
