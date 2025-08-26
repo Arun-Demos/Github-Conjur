@@ -54,13 +54,13 @@ handle_git_jwt() {
     local jwt_token=$1
     # Parse payload body
     j_body=$( echo "$jwt_token" | cut -d "." -f 2 )
-	echo "$j_body" | base64 -d | jq
  	# echo "$j_body" | base64 -d | jq
     # Repad b64 token (dirty)
     padd="=="
     jwt_padded="${j_body}${padd}"
     #decode payload body
     payload=$(echo "$jwt_padded" | base64 -d)
+	echo "$payload" | jq
     # capture IAT time
     iat=$( echo "$payload" | jq .iat )
 
