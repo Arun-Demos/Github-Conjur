@@ -54,7 +54,7 @@ handle_git_jwt() {
     local jwt_token=$1
     # Parse payload body
     j_body=$( echo "$jwt_token" | cut -d "." -f 2 )
-	echo "$j_body"
+	echo "$j_body" | base64 -d
  	# echo "$j_body" | base64 -d | jq
     # Repad b64 token (dirty)
     padd="=="
