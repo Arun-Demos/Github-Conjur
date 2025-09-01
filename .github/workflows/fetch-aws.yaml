@@ -30,7 +30,7 @@ jobs:
             ${{ env.SECRET_ID }}|CONJUR_AWS_JSON
 
       - name: Parse Conjur JSON to AWS env
-        uses: your-org/conjur-actions/aws-from-conjur-json@v1
+        uses: Arun-Demos/conjur-actionv2/aws-from-conjur-json@main
         with:
           json_env_name: CONJUR_AWS_JSON
           region: ap-southeast-1
