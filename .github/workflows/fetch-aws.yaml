@@ -35,3 +35,13 @@ jobs:
           json_env_name: CONJUR_AWS_JSON
           region: ap-southeast-1
           mask_full_json: true
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id:     ${{ env.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token:     ${{ env.AWS_SESSION_TOKEN }}
+          aws-region:            ${{ env.AWS_DEFAULT_REGION }}
+
+      - run: aws s3 ls
