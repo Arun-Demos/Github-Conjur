@@ -1,4 +1,4 @@
-name: fetch-secrets
+name: fetch-secrets-aws
 on:
   workflow_dispatch:
 
